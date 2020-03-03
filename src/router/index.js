@@ -17,20 +17,21 @@ export default new Router({
     {
       path: '/admin',
       component: Admin,
-      beforeEnter: (to, from, next) => {
-        if(localStorage.getItem("name")=="wcy"){
-          next();
-        }else{
-          next({
-            name: "login"
-          })
-        }
-      },
+      
       children:[
         {
           path: '/',
           name: 'User',
-          component: User
+          component: User,
+          beforeEnter: (to, from, next) => {
+            if(localStorage.getItem("name")=="wcy"){
+              next();
+            }else{
+              next({
+                name: "login"
+              })
+            }
+          }
         },
       ]
     }
